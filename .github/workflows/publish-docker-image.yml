@@ -76,8 +76,7 @@ jobs:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           #tags: ${{ steps.meta.outputs.tags }}
-          #tags: ${{secrets.ACR_NAME}}/contoso-website:latest,${{secrets.ACR_NAME}}/contoso-website:${{ env.BRANCH }}
-          tags: ${{ steps.meta.outputs.tags }}/docker-image:${{ env.BRANCH }}
+          tags: paespi0/publish-package:${{ env.BRANCH }}
           build-args: |
               BRANCH=${{ env.BRANCH }}
           labels: ${{ steps.meta.outputs.labels }}
