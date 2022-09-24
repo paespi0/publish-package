@@ -60,8 +60,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          #password: ${{ secrets.GITHUB_TOKEN }}
-          password: ${{ secrets.CR_PAT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
@@ -82,11 +81,9 @@ jobs:
           #context: ./sample-packages/docker
           file: ./sample-packages/docker/Dockerfile
           #push: ${{ github.event_name != 'pull_request' }}
-          #tags: ${{ steps.meta.outputs.tags }}
-          tags: paespi0/publish-package:${{ env.BRANCH }}
-          push: ${{ github.event_name != 'pull_request' }}
-          build-args: |
-              BRANCH=${{ env.BRANCH }}
+          #tags: paespi0/publish-package:${{ env.BRANCH }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
